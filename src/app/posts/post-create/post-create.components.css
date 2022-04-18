@@ -1,0 +1,26 @@
+mat-card {
+  color: black;
+  background-color: white;
+  margin: auto;
+}
+mat-form-field {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+textarea {
+  max-width: 100%;
+  margin: auto;
+}
+input[type="file"] {
+  visibility: hidden;
+}
+
+.img-prev {
+  height: 5rem;
+  margin: 1rem 0;
+}
+
+.img-prev img {
+  height: 100%;
+}

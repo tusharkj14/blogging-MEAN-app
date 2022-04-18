@@ -1,0 +1,48 @@
+<mat-card>
+  <form [formGroup]="form" (submit)="onSubmitClick()">
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="title"
+        placeholder="Post Title"
+        required
+      />
+    </mat-form-field>
+    <div>
+      <button
+        mat-stroked-button
+        color="accent"
+        type="button"
+        (click)="realbutton.click()"
+      >
+        Pick Image
+      </button>
+      <input type="file" #realbutton (change)="onImagePick($event)" />
+    </div>
+
+    <div
+      class="img-prev"
+      *ngIf="imagePrev!='' && imagePrev && form.get('image').valid"
+    >
+      <img [src]="imagePrev" [alt]="form.value.title" />
+    </div>
+
+    <p *ngIf="imagePrev!='' && imagePrev && form.get('image').valid==false">
+      Please Submit an Image File
+    </p>
+
+    <mat-form-field>
+      <mat-label>Content</mat-label>
+      <textarea
+        matInput
+        cols="50"
+        formControlName="content"
+        placeholder="Post Content"
+        required
+      ></textarea>
+    </mat-form-field>
+    <button mat-raised-button color="warn" type="submit">Submit</button>
+  </form>
+</mat-card>

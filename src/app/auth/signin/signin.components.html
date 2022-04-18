@@ -1,0 +1,31 @@
+<mat-card>
+  <form (submit)="onSignin(signinForm)" #signinForm="ngForm">
+    <mat-form-field>
+      <mat-label>E-Mail</mat-label>
+      <input
+        matInput
+        name="email"
+        type="email"
+        ngModel
+        placeholder="E-Mail"
+        #EmailInput="ngModel"
+        required
+        email
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input
+        type="password"
+        name="password"
+        ngModel
+        #PassInput="ngModel"
+        matInput
+        placeholder="Password"
+        required
+      />
+    </mat-form-field>
+    <button mat-raised-button color="warn" type="submit">SignIn</button>
+  </form>
+</mat-card>

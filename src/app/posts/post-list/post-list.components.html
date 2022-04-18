@@ -1,0 +1,46 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<mat-accordion multi="true" *ngIf="Posts.length > 0 && !isLoading">
+  <mat-expansion-panel
+    (opened)="panelOpenState = true"
+    (closed)="panelOpenState = false"
+    *ngFor="let p of Posts"
+  >
+    <mat-expansion-panel-header>
+      <mat-panel-title> Post Titled : {{ p.title }}</mat-panel-title>
+      <!-- <mat-panel-description>
+        Currently this Post is {{panelOpenState ? 'open' : 'closed'}}
+      </mat-panel-description> -->
+    </mat-expansion-panel-header>
+    <div class="post-img">
+      <img [src]="p.imagePath" [alt]="p.title" />
+    </div>
+    <p>{{ p.content }}</p>
+    <mat-action-row>
+      <a
+        mat-button
+        color="accent"
+        [routerLink]="['/edit', p._id]"
+        *ngIf="AuthenticationStatus && userId===p.creator"
+        >Edit</a
+      >
+      <button
+        mat-button
+        color="warn"
+        (click)="onDelete(p)"
+        *ngIf="AuthenticationStatus  && userId===p.creator"
+      >
+        Delete
+      </button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
+<mat-paginator
+  [length]="totalPosts"
+  [pageSize]="postsPerPage"
+  [pageSizeOptions]="pageSizeOptions"
+  aria-label="Select page"
+  (page)="onChangedPage($event)"
+  *ngIf="Posts.length > 0"
+>
+</mat-paginator>
+<p *ngIf="Posts.length<=0 && !isLoading">Add Posts</p>
