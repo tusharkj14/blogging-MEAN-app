@@ -45,7 +45,7 @@ export class PostCreateComponent implements OnInit {
             content: p.content,
             creator: p.creator,
           };
-          console.log(this.editPost);
+          // console.log(this.editPost);
           this.form.setValue({
             title: this.editPost.title,
             content: this.editPost.content,

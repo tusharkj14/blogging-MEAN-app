@@ -117,7 +117,8 @@ router.get("", (req, res, next) => {
 });
 
 router.delete("/:pid", checkAutho, (req, res, next) => {
-  Post.deleteOne({ _id: req.params.id, creator: req.userData.userId }).then(
+  // console.log(req.params);
+  Post.deleteOne({ _id: req.params.pid, creator: req.userData.userId }).then(
     (result) => {
       // console.log(result);
       if (result.deletedCount > 0) {

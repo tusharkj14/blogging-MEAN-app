@@ -112,6 +112,8 @@ export class PostsService {
   }
 
   deletePost(p: typePost) {
+    // console.log(p._id);
     return this.httpC.delete(`http://localhost:3000/api/posts/` + p._id);
+    this.router.navigate(['/']);
   }
 }

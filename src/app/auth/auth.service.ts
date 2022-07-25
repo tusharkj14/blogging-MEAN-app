@@ -37,9 +37,14 @@ export class AuthService {
       email: email,
       password: password,
     };
-    this.httpC.post(baseURL + '/signup', newData).subscribe((response) => {
-      console.log(response);
-    });
+    this.httpC.post(baseURL + '/signup', newData).subscribe(
+      () => {
+        this.router.navigate(['/']);
+      },
+      (error) => {
+        this.authStatusListener.next(false);
+      }
+    );
   }
 
   getuser(email: string, password: string) {
