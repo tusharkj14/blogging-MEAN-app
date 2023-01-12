@@ -42,7 +42,8 @@ router.put(
       { _id: req.params.id, creator: req.userData.userId },
       post
     ).then((result) => {
-      if (result.modifiedCount > 0) {
+      // console.log(result);
+      if (result.matchedCount > 0) {
         res.status(200).json({
           message: "Update Successful!",
           imagePath: imagePath,
@@ -53,6 +54,12 @@ router.put(
           imagePath: imagePath,
         });
       }
+    })
+    .catch((error) => {
+      console.log(error);
+      return res.status(500).json({
+        message: "Couldn't update post.",
+      });
     });
   }
 );
@@ -64,6 +71,12 @@ router.get("/:id", (req, res, next) => {
     } else {
       res.status(404).json({ message: "Post Not found" });
     }
+  })
+  .catch((error) => {
+    console.log(error);
+    return res.status(500).json({
+      message: "Fetching of post failed.",
+    });
   });
 });
 
@@ -90,6 +103,12 @@ router.post(
           imagePath: res.imagePath,
         },
       });
+    })
+    .catch((error) => {
+      console.log(error);
+      return res.status(500).json({
+        message: "Creation of post failed.",
+      });
     });
   }
 );
@@ -113,6 +132,12 @@ router.get("", (req, res, next) => {
         posts: fetchedDocs,
         numPosts: count,
       });
+    })
+    .catch((error) => {
+      console.log(error);
+      return res.status(500).json({
+        message: "Fetching of post failed.",
+      });
     });
 });
 
@@ -131,7 +156,13 @@ router.delete("/:pid", checkAutho, (req, res, next) => {
         });
       }
     }
-  );
+  )
+  .catch((error) => {
+    console.log(error);
+    return res.status(500).json({
+      message: "Fetching of post failed.",
+    });
+  });
 });
 
 module.exports = router;

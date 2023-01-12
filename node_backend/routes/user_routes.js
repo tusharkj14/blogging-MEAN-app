@@ -35,7 +35,7 @@ router.post("/signin", (req, res, next) => {
     .then((givenUser) => {
       if (!givenUser) {
         return res.status(401).json({
-          message: "Auth Failed",
+          message: "User not found. Please Sign Up.",
         });
       }
       // console.log(givenUser[0].password);
@@ -47,7 +47,7 @@ router.post("/signin", (req, res, next) => {
       // console.log(result);
       if (!result) {
         return res.status(401).json({
-          message: "Auth Failed.",
+          message: "Password didn't match.",
         });
       }
       const token = jwt.sign(
